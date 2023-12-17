@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib as mpl
 
 from mappings import *
 from plot import *
@@ -10,6 +11,8 @@ df = pd.read_csv("data.csv")
 # Renombramos las columnas para que sean más legibles y nos sea más fácil
 # trabajar con ellas
 df.rename(columns=COLUMN_MAPPING, inplace=True)
+
+mpl.style.use("ggplot")
 
 ################################################################################
 # Procesamiento de los datos
@@ -231,7 +234,14 @@ cross_plot(frecuencia_comer_fuera, renta, FRECUENCIA_MAPPING, RENTA_MAPPING)
 # Caracteristicas por genero
 caracteristicas_genero = pd.crosstab(genero, caracteristicas, normalize="index")
 print(round(caracteristicas_genero * 100, 2))
-cross_plot(caracteristicas, genero, CARACTEIRISTICAS_MAPPING, GENERO_MAPPING)
+cross_plot(caracteristicas, genero, CARACTEIRISTICAS_MAPPING, GENERO_MAPPING,
+    [
+        "Diseño atractivo\ny practico",
+        "Capacidad de reutilización\ncomo tupper",
+        "Materiales\necoamigables/reciclables",
+        "Fácil activación del\nindicador de frescura",
+        "Tamaño adecuado para\nporciones individuales",
+    ],)
 
 # Importancia frescura por edad y genero
 importancia_frescura_edad_genero = pd.crosstab(
