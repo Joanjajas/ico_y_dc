@@ -2,8 +2,9 @@ import pyautogui
 import time
 import sys
 from pynput import keyboard
-from PIL import ImageChops, Image
+from PIL import ImageChops
 
+LOOP_START = 2193
 running = True
 
 
@@ -50,10 +51,12 @@ def bucle(contraseñitaa: str, last_screenshot):
     print(f"Trying password: {contraseñitaa}")
 
     if last_screenshot is not None:
-        screenshot.save("screenshot.png")
-        last_screenshot.save("last_screenshot.png")
         if len(set(ImageChops.difference(screenshot, last_screenshot).getdata())) > 200:
             print(f"Password found: {contraseñitaa}")
+
+            with open("password.txt", "w") as f:
+                f.write(contraseñitaa)
+
             sys.exit()
 
     return screenshot
@@ -67,7 +70,7 @@ def main():
 
     last_screenshot = None
 
-    for i in range(537, 10000):
+    for i in range(LOOP_START, 10000):
         if not running:
             break
 
