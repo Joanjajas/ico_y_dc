@@ -4,14 +4,14 @@ import os
 import sys
 from PIL import ImageChops
 
-LOOP_START = 6842
+LOOP_START = 541
 
 
 def restart_quantum(first_run: bool = False):
-    time.sleep(3)
 
     if not first_run:
         pyautogui.hotkey("command", "q")
+        time.sleep(3)
 
     os.system("open /Applications/QuantumStudent_MACOS.app")
     time.sleep(2)
@@ -96,7 +96,7 @@ def loop(passwd: str, last_screenshot):
         ):
             print(f"Password found: {passwd}")
 
-            with open("password.txt", "a") as f:
+            with open("passwords.txt", "a") as f:
                 f.write(passwd + "\n")
 
             sys.exit()
@@ -110,8 +110,10 @@ def main():
     restart_quantum(first_run=True)
 
     for i in range(LOOP_START, 10000):
-        if i % 50 == 0:
-            print(f"Tried 50 passwords in {time.time() - start_time} seconds")
+        if i % 10 == 0:
+            print(
+                f"Tried {i - LOOP_START} passwords in {time.time() - start_time} seconds"
+            )
 
             start_time = time.time()
             restart_quantum()
