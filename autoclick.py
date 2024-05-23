@@ -4,7 +4,7 @@ import os
 import sys
 from PIL import ImageChops
 
-LOOP_START = 541
+LOOP_START = 3000
 
 
 def restart_quantum(first_run: bool = False):
@@ -27,7 +27,7 @@ def restart_quantum(first_run: bool = False):
     time.sleep(0.5)
 
     # choose file
-    pyautogui.moveTo(544, 279)
+    pyautogui.moveTo(650, 279)
     pyautogui.click()
     time.sleep(0.5)
 
@@ -64,7 +64,7 @@ def loop(passwd: str, last_screenshot):
     time.sleep(0.3)
 
     # choose file
-    pyautogui.moveTo(544, 279)
+    pyautogui.moveTo(650, 279)
     pyautogui.click()
 
     # click open file
@@ -110,12 +110,11 @@ def main():
     restart_quantum(first_run=True)
 
     for i in range(LOOP_START, 10000):
-        if i % 10 == 0:
+        if i % 50 == 0 and i - LOOP_START != 0:
             print(
                 f"Tried {i - LOOP_START} passwords in {time.time() - start_time} seconds"
             )
 
-            start_time = time.time()
             restart_quantum()
 
         if i < 10:
