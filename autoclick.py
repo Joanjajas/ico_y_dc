@@ -4,7 +4,7 @@ import os
 import sys
 from PIL import ImageChops
 
-LOOP_START = 3000
+LOOP_START = 6114
 
 
 def restart_quantum(first_run: bool = False):
@@ -27,7 +27,7 @@ def restart_quantum(first_run: bool = False):
     time.sleep(0.5)
 
     # choose file
-    pyautogui.moveTo(650, 279)
+    pyautogui.moveTo(690, 279)
     pyautogui.click()
     time.sleep(0.5)
 
@@ -64,7 +64,7 @@ def loop(passwd: str, last_screenshot):
     time.sleep(0.3)
 
     # choose file
-    pyautogui.moveTo(650, 279)
+    pyautogui.moveTo(690, 279)
     pyautogui.click()
 
     # click open file
