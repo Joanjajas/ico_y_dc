@@ -4,7 +4,7 @@ import os
 import sys
 from PIL import ImageChops
 
-LOOP_START = 6114
+LOOP_START = 6424
 
 
 def restart_quantum(first_run: bool = False):
@@ -12,6 +12,10 @@ def restart_quantum(first_run: bool = False):
     if not first_run:
         pyautogui.hotkey("command", "q")
         time.sleep(3)
+
+    if first_run:
+        os.system("open /Applications/QuantumStudent_MACOS.app")
+        time.sleep(10)
 
     os.system("open /Applications/QuantumStudent_MACOS.app")
     time.sleep(2)
